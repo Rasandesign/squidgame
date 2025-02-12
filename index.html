@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست ربات نبودن</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .captcha-container {
+            display: inline-block;
+            padding: 20px;
+            border: 2px solid #000;
+            border-radius: 10px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="captcha-container">
+        <h2>تست ربات نبودن</h2>
+        <p>روی یک میز بازی  حکم تکه دل  , شش دل ,  نه دل وجود دارد. شما باید چه کارتی بیاید تا ببرید؟</p>
+        <h3>حکم پیک است</h3>
+        <div class="options" id="options"></div>
+    </div>
+    
+    <script>
+        function generateCaptcha() {
+            let correctAnswer = "سه پیک";
+            let options = ["سرباز غیشنیز", "تکه خشت", "شاه دل", correctAnswer];
+            options = options.sort(() => Math.random() - 0.5);
+            
+            let optionsContainer = document.getElementById("options");
+            optionsContainer.innerHTML = "";
+            
+            options.forEach(option => {
+                let button = document.createElement("button");
+                button.textContent = option;
+                button.onclick = () => {
+                    if (option === correctAnswer) {
+                        let password = prompt("درست است! لطفا رمز را وارد کنید:");
+                        if (password === "Rasan445374449591" || password === "pezeshian") {
+                            window.location.href = "rim.html";
+                        } else {
+                            alert("رمز اشتباه است!");
+                        }
+                    } else {
+                        alert("اشتباه است! دوباره امتحان کنید.");
+                        generateCaptcha();
+                    }
+                };
+                optionsContainer.appendChild(button);
+            });
+        }
+        
+        generateCaptcha();
+    </script>
+</body>
+</html>
+🗿
